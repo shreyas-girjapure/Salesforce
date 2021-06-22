@@ -3,13 +3,13 @@
 ## Salesforce as a product ?
 
  - Questions 
-	 - What is salesforce ?
+	 - What is salesforce ?	 
 	 - What is CRM ?
 	 - What are its advantages over other products ? How it is different from other CRM products?
-	 - What are different clouds ?
-	 - What is its architecture ?
+	 - What are different clouds ? [refer link](https://tweakyourbiz.com/business/crm/salesforce-cloud-types)	
+	 - What is its architecture ?[refer link](https://trailhead.salesforce.com/en/content/learn/modules/starting_force_com/starting_understanding_arch)
 	 - What is multi - tenant ? 
-	 - Why governance limits were introduced?
+	 - Why governance limits were introduced?[refer link](https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm)
 	 - What do you know about service cloud ?
 
 ## Apex Language
@@ -25,12 +25,16 @@
 	 - Best practices for apex?
 	 - What is execution context ? how many contexts are there ?
 	 - What is System context and User context ?
+	 - What is Apex based sharing ? 
+	 - What is wrapper class ? use cases of wrapper class ?
 ## Order of execution
+
  - Question
 	 - Workflow and validation rules ? Order of executions ? When validation rules run with automation tools ?
 	 - Validation rule runs first or workfklow?
 
 ## Objects and Relationships
+
  - Questions
 	 - What are different types of relationships available ? Self relationship ?
 	 - Junction object ? Which master object does it inherit security from ?
@@ -59,6 +63,8 @@
 	 - difference between trigger.old and trigger.oldMap ? 
 	 - How to run record in system context in between of the trigger?
 	 - Trigger context variables ?
+	 - On which object we cant write trigger?
+
 ## Automation tools
  - Questions
 	 - Time based actions ? How many ways are there to do it based on time ? How to do in PBs?
@@ -107,6 +113,8 @@
 	 - How call batch class from a batch classs?
 	 - Can we call another batch class in execute method?
 	 - Is writing finish method mandatory ?
+	 - How to limit batch size ?
+	 - How many ways are there to retrieve records on start method?
 
 
 ## Asynchronous Operations in Apex
@@ -116,11 +124,13 @@
 	 - Why future method is void ?
 	 - Limitations of future , How it is overcame with queueables?
 	 - why cant we use list of sobj in future?
-	 - Can we write future inside future method ? 
+	 - Can we write future inside future method ? How to write if possible ?
 	 - How to handle mixed dml exception in future method?
 	 - How to pass sObject as parameter in future ? What is a way for that ?
  - Schedulable
  - Queueable
+	 - Can queue hold queues ?
+	 - Limits of Queue in salesforce ? 
 ## Approval Process
 ## Test Class
 
@@ -131,6 +141,8 @@
 	 - How to declare test methods in test class ?
 	 - System.runAs ?
 	 - isTestRunning use cases for that ?
+	 - By pass validations in the test class.
+
 	
 ## Query
  - ### SOQL
@@ -291,8 +303,10 @@
 	 - Lightning UI and wire adapters ?
 	 - How to get the userData in LWC?
 	 - Data flow in LWC ? from parent to child ? or child to parent ?
+	 - How many ways are to implement wire service ? 
 
 ## Limitations and Governance Limits
+[Important Link](https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm)
 
  - Questions?
 	 - How many future methods can we call from a class?
