@@ -300,29 +300,29 @@
 	 - What is 2 way binding ? What is binding in LWC ?
 	 - What types of communication is available in LWC ?
 	 - When does wire method executes ?
+	 - when does connected callback method executes ?
 	 - can we call wire method from button click ?
 	 - Which will execute first ? Either wire method or connected callback ?
-	 - Which will execute first ? Either wire method or rendered callback ?
 	 - Dynamically create a component can we do that ?
 	 - What are different ways to call methods of apex class ?
-	 - How to export LWC component to outside of salesforce ? How to display that outside?
+	 - How to export LWC component to outside of salesforce ? How to display that outside ?
 	 - How to use LWC component inside Aura and VF?
 	 - Why LWC when aura is available?
 	 - How to import static resources in LWC ?
 	 - What imports are there when we create a LWC component ?
-	 - @wire scenarios , which method ran first how to handle that?
-	 -  How to make LWC components only available on account page?
+	 - @wire scenarios , which method ran first how to handle that ? How to control order of execution on wire methods ?
+	 -  How to make LWC components only available on account page ?
 	 -  How to add properties to the lwc? Can we add list to the properties ?
 	 - Can we call wire methods from lwc component ?
-	 - How to create a record without using apex in LWC?
+	 - How to create a record without using apex in LWC ?
 	 - Lightning UI and wire adapters ?
-	 - How to get the userData in LWC?
+	 - How to get the userData in LWC ?
 	 - Data flow in LWC ? from parent to child ? or child to parent ?
 	 - How many ways are to implement wire service ? 
-	 - What is lightning Data table? What attributes it have?
-	 - Can we insert or update data from lightningDataTable? How?
-	 - If we expose parent and not child in meta file…….Which will be rendered on screen……vice versa?
-	 - I want to implement Login page + form + table in LWC? What will be my approach?
+	 - What is lightning Data table? What attributes it have ?
+	 - Can we insert or update data from lightningDataTable? How ?
+	 - If we expose parent and not child in meta file…….Which will be rendered on screen……vice versa ?
+	 - I want to implement Login page + form + table in LWC? What will be my approach ?
 	 - I want to implement searchbox + fetch data from 4 apex object + show it on page
 
 ## Limitations and Governance Limits
