@@ -1,6 +1,6 @@
-# Salesforce Topics for interview
+## Salesforce Topics for interview
 
-## Salesforce as a product ?
+### Salesforce as a product ?
  - Questions 
 	 - What is salesforce ?	 
 	 - What is CRM ?
@@ -16,7 +16,7 @@
 	 - WHat are the types of salesforce orgs? How many?
 	 - What are the types of Sandboxes available in salesforce.
 
-## Apex Language
+### Apex Language
  - Questions
 	 - Collections in apex?
 	 - Access modifiers available in salesforce ?
@@ -32,12 +32,12 @@
 	 - What is wrapper class ? use cases of wrapper class ?
 	 
 	 
-## Order of execution
+### Order of execution
  - Question
 	 - Workflow and validation rules ? Order of executions ? When validation rules run with automation tools ?
 	 - Validation rule runs first or workfklow?
 
-## Objects and Relationships
+### Objects and Relationships
  - Questions
 	 - What are different types of relationships available ? Self relationship ?
 	 - What is a Junction object ? Which master object does it inherit security from ?
@@ -50,7 +50,7 @@
 	 - Relationship between standard salesforce objects ?
 	 - What are the ways to insert or update any record in salesforce.
 
-## Triggers
+### Triggers
  - Questions
 	 - What is trigger , Types of triggers ?
 	 - Can we write a trigger on user ?
@@ -69,12 +69,12 @@
 	 - On which object we cant write trigger?
 	 - There ia s type field on Account. Write a Trigger on Account such that when the Type changes, create a task.
 
-## Automation tools
+### Automation tools
  - Questions
 	 - Time based actions ? How many ways are there to do it based on time ? How to do in PBs?
 	 - Can we do time based actions with flows?
 
-## Process Builder
+### Process Builder
  - Questions
 	 - What actions are available in process builder ?
 	 - How to call apex methods from process builder ?
@@ -84,12 +84,12 @@
 	 - Checkbox box available on processbuilder ?What does it do?
 	 - How process builder handles multiple insertion and updation?
 
-## Flow
+### Flow
  - Question
 	 - Can we do multiplication on flow screen ?
 	 - Types of flow and explain them on the basis of use case?
 
-## Workflow
+### Workflow
 
  - Workflow evaluation criteria ?
  - can we create object with it?
@@ -97,7 +97,7 @@
  - Types of workflow action available ?
  - Types of events for workflow ? 
 
-## Apex Classes
+### Apex Classes
  -  Questions
 	 - How to delete apex class or trigger from Prod?
 	 - How to check for user permissions in apex class ?
@@ -105,7 +105,7 @@
 	 - How will you debug apex class ?
 	 - What are other ways to debug?
 	 
-## Batch Classes
+### Batch Classes
  - Question
 	 - Interfaces for batch Apex?
 	 - Database.Stateful?
@@ -120,7 +120,7 @@
 	 - Considerations for batch classes?
 
 
-## Asynchronous Operations in Apex
+### Asynchronous Operations in Apex
  - Future Methods
 	 - Properties of future methods ?
 	 - Why future method is void ?
@@ -137,8 +137,8 @@
 	 - Can queue hold queues ?
 	 - Limits of Queue in salesforce ? 
 	 
-## Approval Process
-## Test Class
+### Approval Process
+### Test Class
 
  - Questions
 	 - How to test future methods and webService callouts ?
@@ -150,7 +150,7 @@
 	 - By pass validations in the test class.
 
 	
-## Query
+### Query
  - ### SOQL
 	 - Question
 		 - Inner query in soql ? how to query related objects and custom objects?
@@ -174,7 +174,7 @@
 	 - How to resolve mixed dml error ? Ways for that ? Does System.runAs helps in this ? Does future method helps in this ?
 	 - whoid and whatid?
 
-## Security Questions
+### Security Questions
  - ### Profile
  - ### Role
  - ### Security Model
@@ -195,30 +195,30 @@
 	 - Difference between Custom settings and custom metadata.
 	 - What is Setup and non-setup object?
 
-## Knowledge
+### Knowledge
  - Notes :
  - Questions : 
 	 - What are knowledge articles
 	 - What are data categories ?
 	 - How to control visibility of knowledge?
 	 
-## List views 
+### List views 
  - Questions 
 	 - How to remove standard button from a list view?
 	 - How to Change behavior of the standard button on list view ?
-## Reports and Dashboards
+### Reports and Dashboards
  - Question 
 	 - Report was deployed using change set and it is not visible in the next org what could be the reason ?
 	 - What are types of reports ? 
 	 - Dynamic reports?
-## Deployment
+### Deployment
  - Questions 
 	 - Which deployment tools you have used ?
 	 - Which types of rules are available ?
 	 - How to resolve merge conflicts?
 	 - What is ANT tool ? What are advantages of ANT tool ?
 
-## Lightning
+### Lightning
  - Questions
 	 - Different types of events in lightning platform?
 	 - What is $a ? other related stuff ?
@@ -244,7 +244,7 @@
 	 - How to call a method from controller.js in helper.js?
 	 - How to call a method from one helper class in another helper class?
 
-## Integration 
+### Integration 
  - Questions 
 	 - I have custom object , when saving it there is an external system which will perform some operations and let us know if we should save it. How to implement this?
 	 - On button click it calls a web service , calling external system and returning a response , with more data it gives time out error ? How to resolve that ?
@@ -266,7 +266,7 @@
 	 - What are the steps to expose API to amother system.
 	 - How will you configure the salesforce if you want to consume APIs.
 
-## Anonymous Questions
+### Anonymous Questions
  - Questions
 	 - How to override standard save button's Logic ?
 	 - What is sales process?
@@ -285,7 +285,7 @@
 	 - How to configure my domain ?
 	 - Lightning and classic URL ?
 
-## LWC 
+### LWC 
  - Questions
 	 - Lifecycle methods in LWC ? 
 	 - LWC component lifecycle flow ?
@@ -325,18 +325,18 @@
 	 - I want to implement Login page + form + table in LWC? What will be my approach ?
 	 - I want to implement searchbox + fetch data from 4 apex object + show it on page
 
-## Limitations and Governance Limits
+### Limitations and Governance Limits
 [Important Link](https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_apexgov.htm)
  - Questions?
 	 - How many future methods can we call from a class?
 
-## Visual Force 
+### Visual Force 
  - Questions?
 	 - render , reRender , renderAs what are these ?
 	 - What are states in visualforce ?
 	 - How many types of controllers available in visualforce page?
 
-## Community Cloud
+### Community Cloud
  - Questions?
 	- How will you configure Login page in community cloud
 	- How to create community user in salesforce?

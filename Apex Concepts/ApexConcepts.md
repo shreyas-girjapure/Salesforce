@@ -1,3 +1,3 @@
-# Apex Concepts
+## Apex Concepts
 
-## How to force to cause exception ? How to text Exception block of code in rare cases ?
+### How to force to cause exception ? How to text Exception block of code in rare cases ?

@@ -1,21 +1,21 @@
-## Assignments
+### Assignments
 
-### Get from which context code is invoked
+#### Get from which context code is invoked
 >Request class provides us info of the question , this request represents apex invocation request or execution context request. Not to be confused with resource request.
 
-#### Code / Solution :  
+##### Code / Solution :  
 `Request.getQuiddity();` 
 
-#### Resources Referred : 
+##### Resources Referred : 
 1. [Request class](https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_class_System_Request.htm#apex_System_Request_getQuiddity)
 
-### Create and Call a future method and observe Limit
+#### Create and Call a future method and observe Limit
 > Future methods differ in terms of 
 	1. Number of SOQL queries allowed : 200 - 100 [Future and normal]
 	2. Maximum CPU time  : 120000 - 60000
 	3. Maximum Heap size : 12000000 - 6000000
 	4. Number of queueable jobs added to the queue : 1 - 50
-#### Code / Solution :  
+##### Code / Solution :  
 
     public static void doSomething(){
         System.debug('in do something');
@@ -28,16 +28,16 @@
         System.debug('accounts '+getAllAccounts());
     }
 
-#### Explanation 
+##### Explanation 
 >Here in logs both of those debugs gets print in console and whenever system gets time to execute futureMethod it runs that.
 
 >This behaviour is similar to javascript's event loop processing
 
-### Static variables and Future calls
+#### Static variables and Future calls
 > Since Contexts are different and static variables lives only till execution context. Future running methods cant access changed values of static variables within another context 
 > Below is an example of that.
 
-#### Code / Solution :  
+##### Code / Solution :  
 	 public static void doSomething(){
 	     System.debug('in do something');
 		 AccountController.identifier = 'here is changed one';     
@@ -52,14 +52,14 @@
 	     System.debug('access statuc '+
 	     AccountController.identifier);
 	 }
-#### Explanation 
+##### Explanation 
 > Assuming AccountController.identifier = 'test value' was initialized by someone on that class and we tried to change in doSomething() method.
 > In future debug statement we will see original initialized value and not the newly changed one.
 
-### Data Caching [Level One]
+#### Data Caching [Level One]
 > Using static variables if a value is stored in that static variable then through out the context this will behave as a cache. This should be implemented for reducing number of queries. 
 
-#### Code / Solution :  
+##### Code / Solution :  
 Controller Class 
 
 	public class UserController {
@@ -109,10 +109,10 @@ Running above as many time you want will result in only one query , since we are
 
 Implementation of this pattern can be used in most cases where value will be static and wont change frequently.
 
-### Trigger Scenario #1 
+#### Trigger Scenario #1 
 > *Question* : Consider a problem where you want to store first contact name and email on the account object.
 
-#### Code / Solution  :  
+##### Code / Solution  :  
 
 ContactTriggerHandler class 
 
@@ -205,14 +205,14 @@ Test class
         }
     }
 
-### Unit Testing Raise Exceptions in tricky scenario
+#### Unit Testing Raise Exceptions in tricky scenario
 > This pattern makes user to be able to raise the exception whenever required from code.
 > Private properties or method cant be accessed from another class. To make them visible in test class to raise coverage we use @testVisible annotation. This way no other developer will accidently use that variable. This when set true can be used in any code block to raise exception
 
 
 >Below example is raising Mathematical Exception. Developers are free to raise exception they want in block of raise exception flag. 
 
-#### Code / Solution  :  
+##### Code / Solution  :  
 >Posting snippets only full code not posted
 
 	 public class ContactTriggerHandler {
@@ -234,20 +234,20 @@ Test class Code :
 	    Test.startTest();
         ContactTriggerHandler.raiseException = true;
 
-### Trigger Static variables
+#### Trigger Static variables
 > Static variables cannot be accessed by other classes or triggers . This is to be considered when designing variables and system
 
-#### Code / Solution  :  
+##### Code / Solution  :  
 
 	trigger ContactTrigger on Contact (before insert) {   
 	    public static string triggerStatic = 'someGarbage';
 
-### Trigger Data driven switch
+#### Trigger Data driven switch
 > Triggers need to be data driven . There needs to be provision to switch trigger On / Off as per status.
 > There are various ways to handle this . There needs to be design in place at project architecture level.
 > Simple POC for this is below.
 
-#### Code / Solution  :  
+##### Code / Solution  :  
 
     Implementation #1 :Adding Custom settings for trigger. Considering there 
     is only one trigger per object we can add switch to restrict the 
@@ -278,12 +278,12 @@ Executable Code :
     ContactTriggerHandler.disableBeforeInsertContactTrigger = true;
     insert contactList; 
 
-### Limits Understanding Test Classes
+#### Limits Understanding Test Classes
 > We get 2 sets of limits in test classes. 
 	> 1. Code outside Test.startTest() and Code inside Test.startTest()
 	Below is POC for checking limits in both of those contexts  
 
-#### Code / Solution  :  
+##### Code / Solution  :  
     @isTest
     public static void testPopulateFieldsOnAccount(){
         List<Contact> contactList = [Select id , name ,email, AccountId,lastName 
@@ -309,11 +309,11 @@ Below is log snippet for the following
 
 For testing purpose only query limits are printed. Please refer through Limits class salesforce for more limits.
 
-### Static variable and Test class
+#### Static variable and Test class
 > Static variables lives within context. Whenever test method is started it starts new execution context But limits are persisted within different execution contexts of test class.
 > In Below example a static variable is changed and printed in console. In test method the values are reset back to the original value.
 
-#### Code / Solution  :  
+##### Code / Solution  :  
     @isTest
     public class ContactTriggerHandlerTest {
         
@@ -334,7 +334,7 @@ Below are debug logs
     16:53:53:219 USER_DEBUG [26]|DEBUG|static Two
     16:53:53:265 USER_DEBUG [31]|DEBUG|static method one
 
-### Trigger Scenario #2
+#### Trigger Scenario #2
 > Consider a scenario where you want to query a set of contacts and as part of functionality make sure that if any of those contact belong to an account . The account has an annualRevenueForcast set.
 
 Basic Implementation : 
@@ -375,7 +375,7 @@ Here are stats for the code :
     DML : 1 
     DML Rows  :  O(N)
 
-#### Optimized for DML Rows
+##### Optimized for DML Rows
     public static void queryAndSetAccountRevenue(){
         try{
             List<Contact> contactList = getContacts(10);
@@ -409,7 +409,7 @@ Here are stats for the code :
         return accList;
     } 
 
-#### Reducing one SOQL query
+##### Reducing one SOQL query
 > Above implementation works as well in larger code base where there is already existing query on contact object. we will just be extending that code for adding revenue feature
 > In Below code implementation we will query on related account object with relationship fields and update the values late in single DML
 
@@ -474,7 +474,7 @@ Code Stats
     DML : 1
     DML Rows : not O(N)
 
-### Benchmarking basics
+#### Benchmarking basics
 > There should be a way to get performance of the written methods
 > We can simply use Limits.getCPU time at start and end of methods to compute time.
 > But performance can depend on various factors like input , number of iterations etc.
