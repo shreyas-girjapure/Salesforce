@@ -118,5 +118,20 @@ These are some of the most common grant types available in Salesforce. The speci
         1. `9F5BD54997AB1BC09AD98D0F991B1A2A73B8F244AD97D517C737C282FBFD9494`
     1. Get `redirect url` , this is `callback url` of your connect app.
         1. `https://www.google.co.in/`
-1. `https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==&client_secret=9F5BD54997AB1BC09AD98D0F991B1A2A73B8F244AD97D517C737C282FBFD9494&username=shreyasneworg@salesforce.com&password=<yourPassword>`
+1. `https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=<Client_Id>&client_secret=<Client_Secret>&username=<username>&password=<Your_Password>`
 1. Use postman to get access token from this method and store in for further requests.
+
+## How to get access token using implicit type authentication ?
+1. Identify type of sandbox you want to log in to. For Developer instances `https://login.salesforce.com` and for sandboxes `https://test.salesforce.com`
+1. Create a connected app 
+    1. Get `client id / client key` 
+        1. `3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==`
+    1. Get `redirect url` , this is `callback url` of your connect app.
+        1. `https://www.google.co.in/`
+1. You need url of follwing type
+`https://login.salesforce.com/services/oauth2/authorize?response_type=token&client_id=<your_client_id>&redirect_uri=<your_redirect_uri>&scope=<your_scopes>`
+1. URL with values
+`https://login.salesforce.com/services/oauth2/authorize?response_type=token&client_id=3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==&redirect_uri=https://www.google.co.in/`
+1. You'll be prompted to login and once login is success , you will recieve access token in your callback url
+1. `https://www.google.co.in/#access_token=<Access_Token>&instance_url=https%3A%2F%2Fd2w00000kn3veeat-dev-ed.develop.my.salesforce.com&id=https%3A%2F%2Flogin.salesforce.com%2Fid%2F00D2w00000KN3vEEAT%2F0052w00000BeDgwAAF&issued_at=1682249452358&signature=mTI01N%2F0ydsG7X138BR0yYWdDnTRvsKo%2F3HjnKx69zA%3D&scope=full&token_type=Bearer`
+## How to get access token using JWT based authentication ?
