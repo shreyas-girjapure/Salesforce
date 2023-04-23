@@ -1,4 +1,4 @@
-# Authentication
+# Authentication and Authorization
 
 ## What is `Authentication` ?
 Authentication is the process of confirming the identity of a user, device, or system. It is a security mechanism used to ensure that the entity trying to access a resource or service is who or what it claims to be. Authentication is important for protecting sensitive information and preventing unauthorized access to systems and networks. It can be achieved through various methods, such as passwords, biometrics, smart cards, tokens, and multi-factor authentication. The ultimate goal of authentication is to establish trust and ensure that only authorized individuals or systems are granted access to the resources they need.
@@ -67,3 +67,54 @@ When you create a Connected App in Salesforce, you define a set of OAuth policie
 
 Once a Connected App is set up, external applications can use OAuth 2.0 to authenticate with Salesforce and obtain an access token, which can be used to access Salesforce data on behalf of the authenticated user.
 
+## What are different grant types available in salesforce ?
+Salesforce supports several grant types for obtaining an access token through OAuth 2.0 authentication. Here are the most common grant types available in Salesforce:
+
+1. `Authorization Code Grant`: This is the most commonly used grant type in Salesforce. It involves the user being redirected to the Salesforce login page, where they authenticate and authorize the connected app to access their Salesforce data. After successful authentication and authorization, the connected app receives an authorization code, which it then exchanges for an access token.
+
+2. `Implicit Grant`: This grant type is used when the connected app needs to obtain an access token without a client secret, such as when the app is a JavaScript application running in a browser. With the Implicit Grant, the access token is returned directly to the client application after successful authentication and authorization.
+
+3. `Username-Password Grant`: This grant type allows the connected app to obtain an access token by exchanging the user's Salesforce username and password. This grant type is typically used for server-to-server integrations or in cases where a user interface is not available.
+
+4. `Client Credentials Grant`: This grant type is used by connected apps that need to access resources in Salesforce without a user context, such as when accessing metadata or static resources. With the Client Credentials Grant, the connected app obtains an access token using its own client ID and secret.
+
+5. `JWT Bearer Token Grant`: This grant type is used when the connected app needs to access Salesforce data on behalf of a user without the user having to explicitly authorize the app. With the JWT Bearer Token Grant, the connected app creates a JSON Web Token (JWT) and exchanges it for an access token.
+
+These are some of the most common grant types available in Salesforce. The specific grant type used depends on the type of application and the specific requirements of the use case.
+
+## How to get access token using Authorization code grant type ?
+
+1. Identify type of sandbox you want to log in to. For Developer instances `https://login.salesforce.com` and for sandboxes `https://test.salesforce.com`
+1. Create a connected app 
+    1. Get `client id / client key` 
+        1. `3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==`
+    1. Get `redirect url` , this is `callback url` of your connect app.
+        1. `https://www.google.co.in/`
+1. `https://login.salesforce.com/services/oauth2/authorize?response_type=code&client_id=3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==&redirect_uri=https://www.google.co.in/
+`
+1. This URL asks for authentication / login. Once logged in auth code is sent to the redirect url or callback url.
+1.  We got this URL back in response `https://www.google.co.in/?code=aPrxUHjncL9lYc6doDJGt3VZjXHDUwq6IPUl7Qkv.9LOQ3No_qIbe3gny3g3S39SSSbHx9wuKQ%3D%3D`
+1. Copy the code `aPrxUHjncL9lYc6doDJGt3VZjXHDUwq6IPUl7Qkv.9LOQ3No_qIbe3gny3g3S39SSSbHx9wuKQ%3D%3D`
+1. Now this auth code can be used to get access token.
+1. Token is requested from different url `https://login.salesforce.com/services/oauth2/token
+`
+1. This endpoint needs a post body in following format.
+`grant_type=authorization_code&client_id=<your_client_id>&client_secret=<your_client_secret>&redirect_uri=<your_redirect_uri>&code=<your_authorization_code>
+`
+1. There are 2 ways to hit the requested body
+    1. From API client with body in post message
+    1. From URL headers
+1. Final URL to get token `https://login.salesforce.com/services/oauth2/token?grant_type=authorization_code&code=aPrxUHjncL9lYc6doDJGt3VZjXHDUwq6IPUl7Qkv.9LOQ3No_qIbe3gny3g3S39SSSbHx9wuKQ%3D%3D&client_id=3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==&client_secret=9F5BD54997AB1BC09AD98D0F991B1A2A73B8F244AD97D517C737C282FBFD9494&redirect_uri=https://www.google.co.in/`
+1. In the end we get token and other relevant information in the response.
+1. With token we can access data from salesforce with `Authorization: Bearer <access_token>
+` header inputs
+
+## How to get access token using Authorization code grant type ?
+1. Identify type of sandbox you want to log in to. For Developer instances `https://login.salesforce.com` and for sandboxes `https://test.salesforce.com`
+1. Create a connected app 
+    1. Get `client id / client key` 
+        1. `3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==`
+    1. Get `redirect url` , this is `callback url` of your connect app.
+        1. `https://www.google.co.in/`
+1. `https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==&client_secret=9F5BD54997AB1BC09AD98D0F991B1A2A73B8F244AD97D517C737C282FBFD9494&username=shreyasneworg@salesforce.com&password=<yourPassword>`
+1. Use postman to get access token from this method and store in for further requests.
