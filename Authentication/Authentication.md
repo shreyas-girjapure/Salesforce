@@ -109,11 +109,13 @@ These are some of the most common grant types available in Salesforce. The speci
 1. With token we can access data from salesforce with `Authorization: Bearer <access_token>
 ` header inputs
 
-## How to get access token using Authorization code grant type ?
+## How to get access token using Username and Password grant type ?
 1. Identify type of sandbox you want to log in to. For Developer instances `https://login.salesforce.com` and for sandboxes `https://test.salesforce.com`
 1. Create a connected app 
     1. Get `client id / client key` 
         1. `3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==`
+    1. Get `Client Secret` 
+        1. `9F5BD54997AB1BC09AD98D0F991B1A2A73B8F244AD97D517C737C282FBFD9494`
     1. Get `redirect url` , this is `callback url` of your connect app.
         1. `https://www.google.co.in/`
 1. `https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=3MVG9n_HvETGhr3CP0CGtYT.i.ixvsTVAJT.xgI7Scuo5qn46te0ElKck4E3pFVGVs5Gy1vGvDA==&client_secret=9F5BD54997AB1BC09AD98D0F991B1A2A73B8F244AD97D517C737C282FBFD9494&username=shreyasneworg@salesforce.com&password=<yourPassword>`
