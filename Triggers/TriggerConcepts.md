@@ -9,3 +9,5 @@
 ### Write a code to set `firstContactName` and `firstContactEmail` of the first contact for the account
 ### Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
 ### What are different ways to control trigger's execution ? How to add switch to triggers ? 
+### Write a trigger on contact , check if account's annual revenue field is empty , if it is add 500 there ? 
+    1. Using 1 query and 1 dml
