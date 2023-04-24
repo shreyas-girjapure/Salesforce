@@ -88,3 +88,9 @@ global class ApexRestPractice {
 
 }
 ```
+## How to post data to an endpoint ?
+
+## What is difference between `post` , `put` and `patch` ?
+## How to send XML as Response and Request ?
+## Use Wrapper class in apex request for posting complex data 
+## How to write unit tests for apex rest methods ?
