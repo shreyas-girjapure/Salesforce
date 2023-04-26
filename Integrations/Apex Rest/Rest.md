@@ -94,3 +94,5 @@ global class ApexRestPractice {
 ## How to send XML as Response and Request ?
 ## Use Wrapper class in apex request for posting complex data 
 ## How to write unit tests for apex rest methods ?
+
+## References
