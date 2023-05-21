@@ -11,20 +11,20 @@ For example :
 @RestResource(urlMapping='/v1/sayHello/*')
 global class ApexRestPractice {
 
-@HttpGet
-global static void sayHello(){
-    String finalString = 'Hi Mom ';
-    RestRequest request = RestContext.request;
-    RestResponse response = RestContext.response;
-    String nameParam = request.params.get('name');
-    if(String.isBlank(nameParam)){            
-        response.statusCode = 400;
-        response.responseBody = Blob.valueOf('What is this behaviour !? ');
-        return;
+    @HttpGet
+    global static void sayHello(){
+        String finalString = 'Hi Mom ';
+        RestRequest request = RestContext.request;
+        RestResponse response = RestContext.response;
+        String nameParam = request.params.get('name');
+        if(String.isBlank(nameParam)){            
+            response.statusCode = 400;
+            response.responseBody = Blob.valueOf('What is this behaviour !? ');
+            return;
+        }
+        finalString += 'from '+nameParam;
+        response.responseBody = Blob.valueOf(finalString);                        
     }
-    finalString += 'from '+nameParam;
-    response.responseBody = Blob.valueOf(finalString);                        
-}
 }
 ```
 Here method takes input from query parameter and executes further.
