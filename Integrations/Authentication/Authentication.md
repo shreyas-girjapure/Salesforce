@@ -119,7 +119,7 @@ These are some of the most common grant types available in Salesforce. The speci
     1. Get `redirect url` , this is `callback url` of your connect app.
         1. `https://www.google.co.in/`
 1. `https://login.salesforce.com/services/oauth2/token?grant_type=password&client_id=<Client_Id>&client_secret=<Client_Secret>&username=<username>&password=<Your_Password>`
-1. Use postman to get access token from this method and store in for further requests.
+1. Use postman with `post` http method to get access token from this method and store in for further requests.
 
 ## How to get access token using implicit type authentication ?
 1. Identify type of sandbox you want to log in to. For Developer instances `https://login.salesforce.com` and for sandboxes `https://test.salesforce.com`
