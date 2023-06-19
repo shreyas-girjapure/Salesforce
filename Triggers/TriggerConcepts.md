@@ -53,7 +53,7 @@ There are 2 major events `Before` and `After`.
         1. Can be deleted - But doesnt make much sense to delete again !
 
 ## What are trigger context variables ?
-All triggers define implicit variables that allow developers to access run-time context. These variables are contained in the System.Trigger class.
+All triggers define implicit variables that allow developers to access run-time context. These variables are contained in the `System.Trigger` class.
 
 1. `isExecuting`
     1. Returns true if the current context for the Apex code is a trigger, not a Visualforce page, a Web service, or an executeanonymous() API call.
@@ -78,15 +78,30 @@ All triggers define implicit variables that allow developers to access run-time 
         1. `AFTER_UNDELETE`
 
 ## How to write a trigger ?
+We can write triggers on most standard and custom objects
+
+```SQL
+trigger TriggerName on ObjectName (trigger_events) {
+    code_block
+}
+```
+Where `trigger_events` are comman separated list of one or more following events
+1. `before insert`
+1. `before update`
+1. `before delete`
+1. `after insert`
+1. `after update`
+1. `after delete`
+1. `after undelete`
 ## What are trigger best practices ?
+1.  
 
-## How to merge records ?
+## What is `merge` dml in trigger ?
 
-## How does `Trigger.old` and `Trigger.new` behave incase of worklflow field updates ?
+## How to use `merge` DML in trigger ?
+
 ## How to know if trigger has already executed ? How to prevent recursion in triggers ? 
 ## If there are `400` records inserted will they be inserted in same execution context ? Will they share static variables for all `400` records ?
-## Write a code to set `firstContactName` and `firstContactEmail` of the first contact for the account
 ## Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
-## What are different ways to control trigger's execution ? How to add switch to triggers ? 
 ## Write a trigger on contact , check if account's annual revenue field is empty , if it is add 500 there ? 
     1. Using 1 query and 1 dml
