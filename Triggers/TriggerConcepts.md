@@ -94,14 +94,34 @@ Where `trigger_events` are comman separated list of one or more following events
 1. `after delete`
 1. `after undelete`
 ## What are trigger best practices ?
-1.  
+1.  `One trigger per object`
+    1. If we have multiple managing their order of execution becomes difficult
+1. `Bulkify triggers and logic` : Always assume context varibles have more than 1 record
+    1. As there are many ways trigger can be invoked. Not always single user will trigger operation.
+1. `Do not write logic in trigger` block , Make separate handler class for the trigger.
+    1. Make code more readable and maintainable in long term.
+1. `Understand business scenario , Order of execution , context variables` and then decide which type of operation to perform.
+    
+    example : If if values of same record has to be changed , write in Before Triggers
 
-## What is `merge` dml in trigger ?
+    If validations are to be set , write them on before triggers
+## How to choose correct trigger for business scenario ?
+## What is `merge` dml ?
+## What happens on `merge` in trigger ?
+## How to know if trigger has already executed ? How to prevent recursion in triggers ?
+## How to write validations on records in trigger ?
+Writing .addError() on record item is a programmatic way of addin validation before dmls.
+Simply adding .addError() will restrict from any dml.
 
-## How to use `merge` DML in trigger ?
-
-## How to know if trigger has already executed ? How to prevent recursion in triggers ? 
+Example : 
+```SQL
+trigger oppTrigger on Opportunity (before insert) {
+    for (Account a : Trigger.new ) {
+        a.addError('Cannot insert Account');
+    }
+}
+```
+all the records will be prevented from further DML , in this case from insertion
 ## If there are `400` records inserted will they be inserted in same execution context ? Will they share static variables for all `400` records ?
 ## Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
-## Write a trigger on contact , check if account's annual revenue field is empty , if it is add 500 there ? 
-    1. Using 1 query and 1 dml
+## Write a trigger on contact , check if account's annual revenue field is empty , if it is add 500 there ?
