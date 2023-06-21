@@ -127,6 +127,12 @@ all the records will be prevented from further DML , in this case from insertion
 ## What is order of execution ? 
 In Salesforce, the order of execution for triggers follows a specific sequence. Here's an overview of the trigger order of execution:
 
+1. **System validation** : May perform following 
+    1.  System validation rules are checked, including field-level and object-level validations.
+    1. If Request if from UI , Layout specifiec validations are checked.
+    1. For requests from multiline item creation such as quote line items and opportunity line items, Salesforce runs custom validation rules.
+    1. For requests from other sources such as an Apex application or a SOAP API call, Salesforce validates only the foreign keys and restricted picklists.
+1. **Before Triggered Flows** : It executes record triggered before flows , in unspecified order. 
 1. **Before Triggers**: These triggers fire before the record is saved to the database. The order of execution is as follows:
     1.  System validation rules are checked, including field-level and object-level validations.
     1. Before triggers on the same object are executed in an unspecified order.
@@ -150,11 +156,16 @@ In Salesforce, the order of execution for triggers follows a specific sequence. 
 
 7. **Processes (Visual Workflow, Process Builder)**: Any additional processes are executed again, similar to workflow rules.
 
+1. **Record Triggered Flows**
+
 8. **Roll-up Summary Fields**: If there are any roll-up summary fields on the object, they are updated.
 
 9. **DML Operations**: The record and its related records are committed to the database.
 
 10. **Post-Commit Logic**: Any post-commit logic, such as sending emails or making callouts, is executed after the record is saved.
+    1. Sending email
+    1. Enqueued asynchronous Apex jobs, including queueable jobs and future methods
+    1. Asynchronous paths in record-triggered flows
 
 It's important to note that if a trigger performs a DML operation (insert, update, delete) on a related record, the entire trigger order of execution is repeated for the related records.
 
