@@ -124,6 +124,41 @@ trigger oppTrigger on Opportunity (before insert) {
 all the records will be prevented from further DML , in this case from insertion
 ## If there are `400` records inserted will they be inserted in same execution context ? Will they share static variables for all `400` records ?
 ## Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
+## What is order of execution ? 
+In Salesforce, the order of execution for triggers follows a specific sequence. Here's an overview of the trigger order of execution:
+
+1. **Before Triggers**: These triggers fire before the record is saved to the database. The order of execution is as follows:
+    1.  System validation rules are checked, including field-level and object-level validations.
+    1. Before triggers on the same object are executed in an unspecified order.
+    1. Custom validation rules are evaluated.
+    1. Any duplicate rules defined on the object are checked.
+    1. Before triggers on parent objects are executed, but only for operations that involve a relationship with a parent object.
+
+2. **Validation Rules**: After the before triggers complete, Salesforce checks the record against all active validation rules. If any rule fails, the entire transaction is rolled back.
+
+3. **After Triggers**: After the record is saved to the database, after triggers are executed in the following order:
+    1. After triggers on the same object are executed in an unspecified order.
+    1. Workflow rules are evaluated, which can include field updates, email alerts, outbound messages, and more.
+    1. Processes (Visual Workflow, Process Builder) are executed.
+    1. Escalation rules are applied to cases.
+
+4. **Assignment Rules**: If the record is an assignment object, such as a lead or case, assignment rules are applied.
+
+5. **Auto-Response Rules**: If the record is an email message that meets the criteria of an auto-response rule, an automatic email response is generated.
+
+6. **Workflow Rules**: After the record is saved, any additional workflow rules are evaluated again, as some criteria might now be met due to changes made during the before and after triggers.
+
+7. **Processes (Visual Workflow, Process Builder)**: Any additional processes are executed again, similar to workflow rules.
+
+8. **Roll-up Summary Fields**: If there are any roll-up summary fields on the object, they are updated.
+
+9. **DML Operations**: The record and its related records are committed to the database.
+
+10. **Post-Commit Logic**: Any post-commit logic, such as sending emails or making callouts, is executed after the record is saved.
+
+It's important to note that if a trigger performs a DML operation (insert, update, delete) on a related record, the entire trigger order of execution is repeated for the related records.
+
+Understanding the trigger order of execution is crucial for designing efficient and predictable automation in Salesforce. It helps in avoiding recursion, optimizing performance, and ensuring the desired outcomes of trigger-based actions.
 ## Write a trigger If Rating is Hot of the account , add `Hot` at the end of description ?
 ```JAVA
 trigger AccountTrigger on Account (before insert){
