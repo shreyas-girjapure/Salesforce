@@ -30,3 +30,24 @@
 1. What is External lookup field ? When to use ?
 1. What is Indirect lookup field ? When to use ?
 
+[CUSTOM CONFIGURATION]
+
+1 - What is Custom Settings /Custom Metadata Types /Custom Labels?
+
+2 - When to use Custom Settings and Custom Metadata Types?
+
+3 - Type of Custom Settings?
+
+4- Can we deploy Custom Settings to next org? / Can we deploy Custom Metadata Type to next org?
+
+5 - Can we perform Create, Update, Delete operation in Custom Settings and Custom Metadata Types?
+
+6 - Can we access Custom Metadata Types via SOQL Querry? If Yes then does it have impact on Governor Limits?
+
+7 - Can we access Custom Settings via SOQL Querry? If Yes then does it have impact on Governor Limits?
+
+8 - Does Custom Settings supports relationship with another Custom Settings?
+
+9 - Does Custom Metadata Types supports relationship with another Custom Metadata Types?
+
+10 - Can user able to change type of custom settings from list - hierarchy once it is created? - No
