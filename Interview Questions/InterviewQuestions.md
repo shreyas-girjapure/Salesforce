@@ -30,7 +30,7 @@
 1. What is External lookup field ? When to use ?
 1. What is Indirect lookup field ? When to use ?
 
-[CUSTOM CONFIGURATION]()
+[Custom Configuration [Custom Setting \Custom label \ Custom Metadata]()
 
 1. What is Custom Settings /Custom Metadata Types /Custom Labels?
 1. When to use Custom Settings and Custom Metadata Types?
