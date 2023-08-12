@@ -31,6 +31,7 @@
 1. What is Indirect lookup field ? When to use ?
 
 [CUSTOM CONFIGURATION]()
+
 1. What is Custom Settings /Custom Metadata Types /Custom Labels?
 1. When to use Custom Settings and Custom Metadata Types?
 1. Type of Custom Settings?
