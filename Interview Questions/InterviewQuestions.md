@@ -42,3 +42,8 @@
 1. Does Custom Settings support relationship with another Custom Settings?
 1. Does Custom Metadata Types support relationship with another Custom Metadata Types?
 1. Can user change type of custom settings from list - hierarchy once it is created? - No
+
+[Batch Theory](https://medium.com/elevate-salesforce/interview-series-apex-batches-88c559ea75bd)
+[Queuable Theory](https://medium.com/elevate-salesforce/interview-series-queueable-apex-3cf7f73e4543)
+[Schedulable Theory](https://medium.com/elevate-salesforce/interview-series-apex-scheduler-8e0eae924594)
+[Future Theory](https://medium.com/elevate-salesforce/interview-series-future-methods-d4c7c2e40d75)
