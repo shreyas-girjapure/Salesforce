@@ -44,6 +44,6 @@
 1. Can user change type of custom settings from list - hierarchy once it is created? - No
 
 1. [Batch Theory](https://medium.com/elevate-salesforce/interview-series-apex-batches-88c559ea75bd)
-1. [Queuable Theory](https://medium.com/elevate-salesforce/interview-series-queueable-apex-3cf7f73e4543)
-1. [Schedulable Theory](https://medium.com/elevate-salesforce/interview-series-apex-scheduler-8e0eae924594)
-1. [Future Theory](https://medium.com/elevate-salesforce/interview-series-future-methods-d4c7c2e40d75)
+2. [Queuable Theory](https://medium.com/elevate-salesforce/interview-series-queueable-apex-3cf7f73e4543)
+3. [Schedulable Theory](https://medium.com/elevate-salesforce/interview-series-apex-scheduler-8e0eae924594)
+4. [Future Theory](https://medium.com/elevate-salesforce/interview-series-future-methods-d4c7c2e40d75)
