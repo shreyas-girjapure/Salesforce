@@ -85,7 +85,7 @@ trigger TriggerName on ObjectName (trigger_events) {
     code_block
 }
 ```
-Where `trigger_events` are comman separated list of one or more following events
+Where `trigger_events` are common separated list of one or more following events
 1. `before insert`
 1. `before update`
 1. `before delete`
