@@ -108,10 +108,14 @@ Where `trigger_events` are common separated list of one or more following events
 ## How to choose correct trigger for business scenario ?
 ## What is `merge` dml ?
 ## What happens on `merge` in trigger ?
-## How to know if trigger has already executed ? How to prevent recursion in triggers ?
+## What is a transaction ?
+## How to prevent recursion in triggers ?
+
+    1. If `400` records are inserted. Will they be inserted in same execution context / Transaction ? Will they share static variables for all `400` records ?
+
 ## How to write validations on records in trigger ?
-Writing .addError() on record item is a programmatic way of addin validation before dmls.
-Simply adding .addError() will restrict from any dml.
+Writing .addError() on record item is a programmatic way of adding validation before dmls.
+Simply adding `.addError()` will restrict from any dml.
 
 Example : 
 ```SQL
@@ -122,7 +126,6 @@ trigger oppTrigger on Opportunity (before insert) {
 }
 ```
 all the records will be prevented from further DML , in this case from insertion
-## If there are `400` records inserted will they be inserted in same execution context ? Will they share static variables for all `400` records ?
 ## Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
 ## What is order of execution ? 
 In Salesforce, the order of execution for triggers follows a specific sequence. Here's an overview of the trigger order of execution:
@@ -170,49 +173,3 @@ In Salesforce, the order of execution for triggers follows a specific sequence. 
 It's important to note that if a trigger performs a DML operation (insert, update, delete) on a related record, the entire trigger order of execution is repeated for the related records.
 
 Understanding the trigger order of execution is crucial for designing efficient and predictable automation in Salesforce. It helps in avoiding recursion, optimizing performance, and ensuring the desired outcomes of trigger-based actions.
-## Write a trigger If Rating is Hot of the account , add `Hot` at the end of description ?
-```JAVA
-trigger AccountTrigger on Account (before insert){
-    if(isBefore){
-        if(isInsert){
-            AccountTriggerHandler.setDescriptionOfAccounts(Trigger.new);
-        }
-    }
-}
-
-
-Public class AccountTriggerHandler{
-    publlic static void setDescriptionOfAccounts(List<Account> newAccountList){
-        for(Account acc : newAccountList){
-            if(acc.rating == 'HOT'){
-                acc.Description += 'HOT'
-            }
-        }
-    }
-}
-```
-
-## Write a trigger for , Every Account should have 1 contact inserted with it.
-```JAVA
-trigger AccountTrigger on Account (After Insert){
-    if(isAfter){
-        if(isInsert){
-            AccountTriggerHandler.associatedContactsLogic(Trigger.new);
-        }
-    }
-}
-
-Public class AccountTriggerHandler{
-    publlic static void associatedContactsLogic (List<Account> newAccountList){
-        List<Contact> contactList = new List<Contact>();
-        for(Account acc : newAccountList){
-            Contact con = new Contact();
-            con.accountId = acc.Id;
-            contactList.add(con);
-        }
-        if(contactList != null && contactList.size() > 0){
-            insert contactList;
-        }        
-    }
-}
-``` 
