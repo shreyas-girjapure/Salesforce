@@ -40,7 +40,6 @@ Refs:
     What happens if this permission set and permission set group is assigned to the user ? 
 
 Muting only affects on the aggregations of the permissions of the group.
-
 Permissions provided outside of the group remains as it is.
 
 Here ,
@@ -50,7 +49,6 @@ Here ,
 `permGroupB : edit - edit = no edit`
 
 In above case the user will still have `edit` on `industry` field via assigned permission set `permA` but not from `permGroupB`
-
 
 ### 2 users have same profile, but 1 user can `edit` a `field` on page layout, but another user can't. What could be the reason ?
 
