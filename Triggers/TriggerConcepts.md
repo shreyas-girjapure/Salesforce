@@ -173,3 +173,7 @@ In Salesforce, the order of execution for triggers follows a specific sequence. 
 It's important to note that if a trigger performs a DML operation (insert, update, delete) on a related record, the entire trigger order of execution is repeated for the related records.
 
 Understanding the trigger order of execution is crucial for designing efficient and predictable automation in Salesforce. It helps in avoiding recursion, optimizing performance, and ensuring the desired outcomes of trigger-based actions.
+
+
+## References 
+1. [Triggers Apex](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)
