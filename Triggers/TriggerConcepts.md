@@ -177,3 +177,5 @@ Understanding the trigger order of execution is crucial for designing efficient 
 
 ## References 
 1. [Triggers Apex](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)
+1. [Trigger Scenarios Company Wise](https://salesforcegeek.in/trigger-scenario-based-questions-in-salesforce/)
+1. [Trigger Scenarios All Parts](https://salesforcegeek.in/36-trigger-scenarios-for-practice-in-salesforce-basic-to-advance/)
