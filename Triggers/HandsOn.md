@@ -8,9 +8,8 @@ trigger AccountTrigger on Account (before insert){
     }
 }
 
-
 Public class AccountTriggerHandler{
-    publlic static void setDescriptionOfAccounts(List<Account> newAccountList){
+    public static void setDescriptionOfAccounts(List<Account> newAccountList){
         for(Account acc : newAccountList){
             if(acc.rating == 'HOT'){
                 acc.Description += 'HOT'

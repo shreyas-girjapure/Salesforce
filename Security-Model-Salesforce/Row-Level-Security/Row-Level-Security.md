@@ -16,7 +16,7 @@
 ## How to Remove shared access ?
 ## How to restrict records ?
 ## What kind of access do roles up in hierarchy get ?
-## Can owner delete their records even if he doesnt have object level permission of `delete`? 
+## Can owner delete their records even if he doesn't have object level permission of `delete`? 
 ## What is `public/read/write/transfer` ?
 
 ## References
