@@ -46,15 +46,18 @@ Public class AccountTriggerHandler{
 ``` 
 ## Write a roll up summary trigger ?
 
-## Write a trigger on the Account when the Account is updated check all opportunities related to the account. Update all Opportunities Stage to close lost if an opportunity created date is greater than 30 days from today and stage not equal to close won
+## Write a trigger for below scenario ?
+> On the Account when the Account is updated check all opportunities related to the account. Update all Opportunities Stage to close lost if an opportunity created date is greater than 30 days from today and stage not equal to close won
 
 ## Write a trigger to make sure there are no duplicate contacts based on email ?
 
 ## Write a trigger on the Opportunity line item when a line item deleted delete an opportunity as well.
 
-## When the account Status field is updated and if the related contact is more than zero then it shows an error and if the related contact is equal to zero then do nothing
+## Write for below scenario 
+> When the account Status field is updated and if the related contact is more than zero then it shows an error and if the related contact is equal to zero then do nothing
 
-## Once an Account is inserted an email should go to the System Admin user with specified text below.An account has been created and the name is “Account Name”.
+## Write for below scenario 
+> Once an Account is inserted an email should go to the System Admin user with specified text below.An account has been created and the name is “Account Name”.
 
 ## Write a simple trigger framework ?
 
