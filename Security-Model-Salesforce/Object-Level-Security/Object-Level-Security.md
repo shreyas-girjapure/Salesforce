@@ -50,7 +50,7 @@ If user doesn't have read access to the field but record detail page has the fie
 ## Why use permission sets ?
 permission set provides granular and reusable set of permissions.
 1. They are more flexible.
-1. They are packageable.
+1. They are package-able.
 1. They are upgradeable too.
 1. User can have multiple permission sets.
 
@@ -139,8 +139,15 @@ Refs :
 ## While creating fields can we set FLS on `permission sets` instead of `profiles` , If so how ?
 1. Yes, There is setting in user management setting which allowes us to do so.
 
-## Can we assign `permission sets and groups` for specific time ? If so how ? 
+## Can we assign `permission sets and groups` for specific time ? If so how ?
+
 1. Yes , There is provision in permission set and group access management to provide periodic access.
+## What is deployment status `In Development` and `Deployed` on object setting ?
+1. Objects with `In Development` can only be seen by users with `Customize Application Permission`.
+1. Objects with `Deployed` status are available for all users with read access.
+
+Refs : 
+1. [Deployment Status Object](https://help.salesforce.com/s/articleView?id=sf.deploying_custom_objects.htm&type=5)
 
 ## References
 1. [Security Model Salesforce](https://developer.salesforce.com/blogs/developer-relations/2017/04/salesforce-data-security-model-explained-visually)
@@ -149,3 +156,4 @@ Refs :
 1. [User Permissions](https://help.salesforce.com/s/articleView?id=sf.permissions_about_users_access.htm&type=5)
 1. [Field Permissions](https://help.salesforce.com/s/articleView?id=sf.users_profiles_field_perms.htm&type=5)
 1. [Custom Permissions](https://help.salesforce.com/s/articleView?id=sf.custom_perms_overview.htm&type=5)
+1. [Deployment Status Object](https://help.salesforce.com/s/articleView?id=sf.deploying_custom_objects.htm&type=5)
