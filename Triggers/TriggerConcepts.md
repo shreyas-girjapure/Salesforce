@@ -61,8 +61,10 @@ All triggers define implicit variables that allow developers to access run-time 
 1. `isBefore` `isAfter`
 1. `new`
     1. Returns a list of the new versions of the sObject records.
+    1. This sObject list is only available in `insert`, `update`, and `undelete` triggers, and the records can only be modified in `before`  triggers.
 1. `newMap`
     1. A map of IDs to the new versions of the sObject records.
+    1. This map is only available in `before update, after insert, after update, and after undelete` triggers.
 1. `old`
     1. Returns a list of the old versions of the sObject records.
 1. `oldMap`
@@ -107,6 +109,8 @@ Where `trigger_events` are common separated list of one or more following events
     If validations are to be set , write them on before triggers
 ## How to choose correct trigger for business scenario ?
 ## What is `merge` dml ?
+Refs : 
+1. [Merge Event and Order](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_merge_statements.htm)
 ## What happens on `merge` in trigger ?
 ## What is a transaction ?
 ## How to prevent recursion in triggers ?
@@ -127,6 +131,7 @@ trigger oppTrigger on Opportunity (before insert) {
 ```
 all the records will be prevented from further DML , in this case from insertion
 ## Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
+## What are best practices for triggers ?
 ## What is order of execution ? 
 In Salesforce, the order of execution for triggers follows a specific sequence. Here's an overview of the trigger order of execution:
 
