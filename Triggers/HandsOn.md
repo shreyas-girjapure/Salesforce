@@ -142,7 +142,7 @@ public class AccountTriggerHandler {
 
 >Pre Work: Create a Custom field on Account Object named maxOpp__c (Text) to store Opportunity Name.
 
-```C#
+```JAVA
 trigger oppTrigger on Opportunity (after update , after insert , after delete , after undelete){
     
     if(Trigger.isUndelete){
