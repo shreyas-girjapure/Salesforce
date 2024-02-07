@@ -61,13 +61,14 @@ having such building block can help you establish security model you want for yo
 1. Muting is also available while using groups.
 
 ## What is `session activation required` while creating permission set group ?
-This can for providing control of permissions over limited session login.
-this is different from duration based permission set and Permission set group assignments.
+1. Need help for use case and more characteristics ?
+1. This is for providing control of permissions over limited session login.
+1. this is different from duration based permission set and Permission set group assignments.
 ## How do we restrict Object and Field level access using permission set?
 Using muting permissions in permission set group.
 ## What is muting permission set ? When to use ?
 1. Muting permissions is salesforce feature which can be used to restrict some of the permissions from permission set group.
-1. This is limited to permission set group only and has affect only on cumulative permissions of the group.
+1. This is limited to permission set group only and has effect only on cumulative permissions of the group.
 
 ## Does creation of it creates record in `PermissionSet` object ?
 1. Muting permission sets created in groups are not visible as separate permissions in salesforce.
@@ -85,7 +86,7 @@ Using muting permissions in permission set group.
 
 >What happens if this permission set and permission set group is assigned to the user ? 
 
-Muting only affects on the aggregations of the permissions of the group.
+Muting only has effects on the aggregations of the permissions of the group.
 Permissions provided outside of the group remains as it is.
 
 Here ,
@@ -101,7 +102,7 @@ In above case the user will still have `edit` on `industry` field via assigned p
 1. The user which has access must be getting extra field permission from either permission set or permission set group. 
 ## Does muting a permission in permission set group also mutes profile's permissions ?
 
-1. No , It does not muting only affects the overall permission aggregation of the group. 
+1. No , It does not muting only has effects on  the overall permission aggregation of the group. 
 
 ## What can `profiles` do over `permission set` ?
 1. Login IP ranges
