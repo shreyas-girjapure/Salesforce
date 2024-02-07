@@ -47,7 +47,7 @@ There are 2 major events `Before` and `After`.
         1. Read only
         1. Can not be deleted - Already deleted
 ### Undelete 
-1. After Delete
+1. After UnDelete
     1. `Trigger.new` and `Trigger.newMap`
         1. `Trigger.new` is restricted from update
         1. Can be deleted - But doesnt make much sense to delete again !

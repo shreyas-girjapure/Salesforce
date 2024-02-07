@@ -50,10 +50,86 @@ Public class AccountTriggerHandler{
 
 ## Write a trigger to make sure there are no duplicate contacts based on email ?
 
-## Write a trigger on the Opportunity line item when a line item deleted delete an opportunity as well.
+```JAVA
+trigger duplicatePreventionTrigger on contact (before insert){
+    if(Trigger.isBefore && Trigger.isInsert){
+        ContactBeforeInsertHandler.checkForDuplicates(Trigger.new);
+    }
+}
+
+Public Class ContactBeforeInsertHandler {
+
+    public static void checkForDuplicates(List<Contact> contactList){
+        
+        Set<String> incomingContactEmails = new Set<String>();
+        Set<String> existingContactEmails = new Set<String>();
+
+        for(Contact con : contactList){
+            String currentEmail = con.email;
+            if(!String.isEmpty(currentEmail)){
+                incomingContactEmails.add(currentEmail);
+            }
+        }
+
+        List<Contact> existingContactsWithEmail = new List<Contact>();
+
+        if(!incomingContactEmails.isEmpty()){
+            existingContactsWithEmail = [Select id, email from Contact where email in:incomingContactEmails ];
+        }
+
+        if(!existingContactsWithEmail.isEmpty()){
+            for(Contact con : existingContactsWithEmail){
+                String currentEmail = con.email;
+                existingContactEmails.add(currentEmail);
+            }            
+        }
+
+        for(Contact con : contactList){
+            String conEmail = con.email;
+            if(existingContactEmails.contains(conEmail)){
+                con.addError('There already exist a contact with same email address');
+            }
+        }
+    }
+
+}
+```
+
+## Write a trigger on the Opportunity line item when a line item is deleted delete an opportunity as well.
 
 ## Write for below scenario 
-> When the account Status field is updated and if the related contact is more than zero then it shows an error and if the related contact is equal to zero then do nothing
+> When the account Status field is updated and if the related contact is more than zero then show an error and if the related contact is equal to zero then do nothing
+
+```JAVA
+trigger accountTrigger on account (before update){
+
+}
+
+public class AccountTriggerHandler {
+    public static void handleContactValidation(List<Account> accList,Map<String,Account> oldAccountMap){
+
+        List<Account> updatedStatusAccounts = List<Account>();
+
+        for(Account acc : accList){
+            String currentStatus = acc.Status;
+            String oldStatus = oldAccountMap.get(acc.id).status;
+
+            if(currentStatus != oldStatus){
+                updatedStatusAccounts.add(acc);
+            }
+        }
+
+        List<Account> accountsWithContacts = [Select id , status, (Select id from contacts) from account where id in: updatedStatusAccounts];
+
+        for(Account acc : accountsWithContacts){
+            if(acc.contacts.size() > 0){
+                acc.addError('Something is wrong');
+            }
+        }
+    }
+}
+```
+
 
 ## Write for below scenario 
 > Once an Account is inserted an email should go to the System Admin user with specified text below.An account has been created and the name is “Account Name”.
@@ -66,6 +142,52 @@ Public class AccountTriggerHandler{
 
 >Pre Work: Create a Custom field on Account Object named maxOpp__c (Text) to store Opportunity Name.
 
+```C#
+trigger oppTrigger on Opportunity (after update , after insert , after delete , after undelete){
+    
+    if(Trigger.isUndelete){
+        OpportunityManagement.handleLargestOpportunity(Trigger.new);
+    }else{
+        OpportunityManagement.handleLargestOpportunity(Trigger.old);
+    }
+}
+
+public class OpportunityManagement(){
+    
+    public static void handleLargestOpportunity(List<opportunity> opportunityList){ 
+        Set<String> accountIds = new Set<String>();
+
+        for(Opportunity opp : opportunityList){
+            accountIds.add(opp.accountId);
+        }
+
+        List<Account> accountList = new List<Account>();
+        
+        if(!accountIds.isEmpty()){
+            accountList = [Select id ,maxOppField, (Select id , name from opportunities limit 1 order by revenue desc) from Account where id in : accountIds];            
+        }
+
+        List<Account> accountsToBeUpdated = new List<Account>();
+
+        for(Account acc : accountList){
+            if(!acc.opportunities.isEmpty()){
+
+                String currentOppName = acc.maxOppField;
+                String newOppName = acc.opportunities[0].name;
+                if(currentOppName != newOppName){                    
+                    acc.maxOppField = acc.opportunities[0].name;
+                    accountsToBeUpdated.add(acc);
+                }
+            }
+        }
+
+        if(!accountsToBeUpdated.isEmpty()){
+            update accountsToBeUpdated;
+        }
+    }
+    
+}
+```
 ## Write for below scenario ?
 > Business Use Case: Your Company ABC Corp. wants to keep track of the highest and lowest salaries paid by each of its tech firms to gain insights into how salaries are distributed across different parts of the organization and take appropriate actions to ensure that employee salaries are fair and equitable.
 
