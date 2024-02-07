@@ -195,6 +195,59 @@ public class OpportunityManagement(){
 
 > Object – 2 : Employee__c Fields : Salary__c (Currency) , Tech_Firm__c (Lookup)
 
+```JAVA
+trigger employeeTrigger on Employee (After insert , After update , after delete , after undelete){
+
+    if(Trigger.isInsert){
+        EmployeeTriggerHandler.managerSalaryStats(Trigger.new,null);
+    }
+    if(Trigger.isUpdate){
+        EmployeeTriggerHandler.managerSalaryStats(Trigger.new,Trigger.oldMap);
+    }
+    if(Trigger.isDelete){
+        EmployeeTriggerHandler.managerSalaryStats(Trigger.new,null);
+    }
+}
+public class EmployeeTriggerHandler {
+    public static void managerSalaryStats(List<Employee> employeeList,Map<Id,Employee> oldMap){
+        
+        Set<String> techFirmIds = new Set<String>();
+        
+        for(Employee emp : employeeList){                 
+            techFirmIds.add(emp.techFirmId);
+            //For re-parenting cases when parent of employee is changed , now previous tech-firm also needs be re-evaluated.
+            if(oldMap.get(emp.Id).techFirmId != emp.techFirmId){
+                techFirmIds.add(oldMap.get(emp.Id).techFirmId);
+            }
+        }
+    
+
+        if(techFirmIds.isEmpty()){
+            return;
+        }
+
+        List<TechFirm> techFirmList = new List<TechFirm>();
+
+        techFirmList = [Select id ,maxSalary,minSalary, (Select id , Salary from employees order by salary desc) from TechFirm where id in:techFirmIds];
+
+        List<TechFirm> updatedTechFirms = new List<TechFirm>();
+
+        for(TechFirm tf : techFirmList){
+            if(!tf.employees.isEmpty()){
+                tf.maxSalary = tf.employees[0].Salary;
+                tf.minSalary = tf.employees[tf.employees.size()-1].Salary;
+                updatedTechFirms.add(tf);
+            }
+        }
+
+        if(updatedTechFirms.isEmpty()){
+           return ; 
+        }
+        update updatedTechFirms;
+    }
+}
+```
+
 ## Write for below scenario ?
 
 >Business Use Case: Let’s say a sales rep is working on an account and marks the “Close_all_Opps__c” field as true. Without this trigger, they would have to manually go through each open opportunity for that account and close them as won, which can be time-consuming and prone to errors. With this trigger in place, the opportunities will be automatically closed as won if they meet the criteria specified in the code.
