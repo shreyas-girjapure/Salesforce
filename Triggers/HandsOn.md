@@ -43,10 +43,37 @@ Public class AccountTriggerHandler{
     }
 }
 ``` 
-## Write a roll up summary trigger ?
 
 ## Write a trigger for below scenario ?
 > On the Account when the Account is updated check all opportunities related to the account. Update all Opportunities Stage to close lost if an opportunity created date is greater than 30 days from today and stage not equal to close won
+
+```JAVA
+trigger accountTrigger on Account (after update){
+    if(Trigger.isAfter && Trigger.isUpdate){
+        AccountTriggerHandler.manageOlderOpportunities(Trigger.New);
+    }
+}
+
+public class AccountTriggerHandler{
+    public static void manageOlderOpportunities(List<Account> accountList){
+
+        List<Opportunity> oppToBeUpdated = new List<Opportunity>();
+
+        DateTime thirtyDaysAgo = System.today().addDays(-30);
+
+        for(Opportunity opp : [Select id,Stage from Opportunities where stage != 'Close Won' and createdDate < : thirtyDaysAgo and accountId in: accountList]){
+            opp.Stage = 'Close Lost';
+            opp.closeDate = System.today();
+            oppToBeUpdated.add(opp);        
+        }
+        
+        if(!oppToBeUpdated.isEmpty()){
+            update oppToBeUpdated;
+        }
+
+    }
+}
+```
 
 ## Write a trigger to make sure there are no duplicate contacts based on email ?
 
@@ -97,6 +124,61 @@ Public Class ContactBeforeInsertHandler {
 
 ## Write a trigger on the Opportunity line item when a line item is deleted delete an opportunity as well.
 
+```JAVA
+trigger opportunityLineItemTrigger on opportunityLineItem (after delete){
+    if(Trigger.isDelete){
+        opportunityLineItemHandler.handleOpportunityDeletion(Trigger.old);
+    }
+}
+
+Public Class opportunityLineItemHandler{
+    public static void handleOpportunityDeletion(List<opportunityLineItem> oppLineItemList){
+        List<Opportunity> oppsToBeDeleted = new List<Opportunity>();
+
+        Set<String> oppIds = new Set<String>();
+
+        for(OpportunityLineItem oppLineItem : oppLineItemList){
+            oppIds.add(oppLineItem.opportunityId);
+        }
+
+        if(oppIds.isEmpty()){
+            return;
+        }
+
+        oppsToBeDeleted = [Select id from Opportunity where id in:oppIds];
+
+        if(oppsToBeDeleted.isEmpty()){
+            return;
+        }
+
+        delete oppsTobeDeleted;
+    }
+
+    public static void handleOpportunityDeletionAlternateWay(List<opportunityLineItem> oppLineItemList){
+        List<Opportunity> oppsToBeDeleted = new List<Opportunity>();
+
+        for(OpportunityLineItem oppLineItem : oppLineItemList){
+            if(!String.isEmpty(oppLineItem.opportunityId) && oppLineItem.opportunity != null){
+                oppsToBeDeleted.add(oppLineItem.opportunity);
+            }
+        }
+
+        if(oppsToBeDeleted.isEmpty()){
+            return;
+        }
+
+        try{
+            delete oppsTobeDeleted;
+        }catch(Exception ex){
+            System.debug('Hello world');
+        }
+    }
+
+    
+}
+```
+
+
 ## Write for below scenario 
 > When the account Status field is updated and if the related contact is more than zero then show an error and if the related contact is equal to zero then do nothing
 
@@ -131,10 +213,38 @@ public class AccountTriggerHandler {
 ```
 
 
-## Write for below scenario 
+## Write for below scenario - Send Email 
 > Once an Account is inserted an email should go to the System Admin user with specified text below.An account has been created and the name is “Account Name”.
 
-## Write a simple trigger framework ?
+```JAVA
+trigger AccountTrigger on Account (after insert){
+    if(Trigger.isInsert && Trigger.isAfter){
+        AccountTriggerHandler.sendEmailsForNewAccounts(Trigger.new);
+    }
+}
+
+public class AccountTriggerHandler{
+    public static void sendEmailsForNewAccounts(List<Account> accountList){
+        
+        List<Messaging.singleEmailMessage> emailsToBeSent = new List<Messaging.singleEmailMessage>();
+
+        for(Account acc : accountList){
+            Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+            email.setSubject = '';
+            email.setToAddress = new List<String>{''};
+            email.setPlainTextBody = '';
+            emailsToBeSent.add(email);
+        }
+
+        if(emailsToBeSent.isEmpty()){
+            return ;
+        }
+
+        Messaging.sendEmails(emailsToBeSent);
+    }
+}
+
+```
 
 ## Write for below scenario ?
 
@@ -188,6 +298,7 @@ public class OpportunityManagement(){
     
 }
 ```
+
 ## Write for below scenario ?
 > Business Use Case: Your Company ABC Corp. wants to keep track of the highest and lowest salaries paid by each of its tech firms to gain insights into how salaries are distributed across different parts of the organization and take appropriate actions to ensure that employee salaries are fair and equitable.
 
@@ -269,6 +380,8 @@ public class EmployeeTriggerHandler {
 
 ## Write for below scenario ?
 > Business Use Case: Automate the assignment of an “Account Rating” to Accounts based on the number of closed Cases associated with each Account.
+
 ## References
 1. [Roll-Up Summary Trigger](https://www.pantherschools.com/create-a-rollup-summary-trigger-in-salesforce/)
-1. 
+1. [Trigger Scenarios Company Wise](https://salesforcegeek.in/trigger-scenario-based-questions-in-salesforce/)
+1. [Trigger Scenarios All Parts](https://salesforcegeek.in/36-trigger-scenarios-for-practice-in-salesforce-basic-to-advance/)
