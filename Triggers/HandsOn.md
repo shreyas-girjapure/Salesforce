@@ -370,8 +370,41 @@ public class EmployeeTriggerHandler {
 
 > Pre Work: Create a custom field on the Account object named Number_of_Products__c (Number) to count the total number of products related to all Opportunities associated with the Account.
 
-## Write for below scenario ?
-> Business Use Case : Your company XYZ corp. wants to automate the creation of follow-up tasks for sales representatives whenever an opportunity’s stage changes in the Salesforce org 
+## Write for below scenario - Task Creation ?
+> Business Use Case : Your company XYZ corp. wants to automate the creation of follow-up tasks for sales representatives whenever an opportunity’s stage changes in the Salesforce org
+
+
+```JAVA
+trigger opportunityTrigger on opportunity(after update){
+    OpportunityHandler.handleTaskCreation(Trigger.new,Trigger.oldMap);
+}
+
+Public Class OpportunityHandler{
+
+    public static void handleTaskCreation(List<Opportunity> oppList,Map<Id,Opportunity> oldOppMap){
+        
+        List<Task> tasksToBeCreated = new List<Task>();        
+        
+        for(Opportunity opp : oppList){
+            String currentStage = opp.stageName;
+            String oldStage = oldOppMap.get(opp.id).stageName;
+
+            if(currentStage != oldStage){
+                Task tsk = new Task();
+                task.status = 'Not Started';
+                task.description = 'hello';
+                task.Subject = 'some subject';
+                task.whatId = opp.Id;
+                tasksToBeCreated.add(tsk);
+            }            
+        }
+        if(tasksToBeCreated.isEmpty()){
+            return;
+        }
+        insert tasksTobeCreated;
+    }
+}
+```
 
 ## Write for below scenario ?
 > Business Use Case: A sales organization sells multiple products to the same account. The “Number of Products” field on the Account object could be used to track how many different products the company has sold to each account. By updating this field automatically based on the number of Opportunity Line Items related to each Account, sales representatives and account managers can easily view this information in Salesforce and use it to inform their sales and account management strategies.
