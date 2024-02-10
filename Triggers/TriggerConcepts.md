@@ -131,7 +131,12 @@ trigger oppTrigger on Opportunity (before insert) {
 ```
 all the records will be prevented from further DML , in this case from insertion
 ## Can trigger's have static members ? Can we access trigger's static members from outside trigger ?
-## What are best practices for triggers ?
+## What is stack depth for triggers ?
+`16`
+## Can we write callouts in Triggers ?
+No , We can not. You may use async apex to get this done.
+You can use future method with  `@future(callout=true)` to get this easily implemented.
+ 
 ## What is order of execution ? 
 In Salesforce, the order of execution for triggers follows a specific sequence. Here's an overview of the trigger order of execution:
 
