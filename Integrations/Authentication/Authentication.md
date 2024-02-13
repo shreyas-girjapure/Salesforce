@@ -135,3 +135,6 @@ These are some of the most common grant types available in Salesforce. The speci
 1. You'll be prompted to login and once login is success , you will recieve access token in your callback url
 1. `https://www.google.co.in/#access_token=<Access_Token>&instance_url=https%3A%2F%2Fd2w00000kn3veeat-dev-ed.develop.my.salesforce.com&id=https%3A%2F%2Flogin.salesforce.com%2Fid%2F00D2w00000KN3vEEAT%2F0052w00000BeDgwAAF&issued_at=1682249452358&signature=mTI01N%2F0ydsG7X138BR0yYWdDnTRvsKo%2F3HjnKx69zA%3D&scope=full&token_type=Bearer`
 ## How to get access token using JWT based authentication ?
+
+## Refs
+1. [Oauth Authorisation Flows](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_flows.htm&type=5)
