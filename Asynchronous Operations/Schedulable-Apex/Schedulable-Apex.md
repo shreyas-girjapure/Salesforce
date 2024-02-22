@@ -7,6 +7,7 @@
 ## Can we call Schedulable Apex from synchronous context ?
 ## Can we call Schedulable Apex from asynchronous context ?
 ## Limits of Schedulable Apex method ?
+## Can we edit scheduled apex class if it is active ?
 
 ## References
 1. [Interview Questions for Schedulable Apex](https://medium.com/elevate-salesforce/interview-series-apex-scheduler-8e0eae924594)
