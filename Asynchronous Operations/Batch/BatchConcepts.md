@@ -30,6 +30,7 @@ AsyncApexJob apexJobOfBatch = [SELECT Id, Status, JobItemsProcessed, TotalJobIte
 ```
 ## What are the limits of Batch Class ?
 1. Up to 5 batch jobs can be queued or active concurrently.
+    1. Whenever we submit batches it sits in queue in holding state if resources are not available to execute batch.     
 1. Up to 100 Holding batch jobs can be held in the Apex flex queue.
 1. The maximum number of batch Apex method executions per `24-hour` period is `250,000`, or the number of user licenses in your org multiplied by `200`—whichever is greater. Method executions include executions of the start, execute, and finish methods. This limit is for your entire org and is shared with `all asynchronous Apex`.
 1. A maximum of 50 million records can be returned in the Database.QueryLocator object. If more than 50 million records are returned, the batch job is immediately terminated and marked as Failed.
