@@ -1,5 +1,9 @@
+## Experience Cloud Concepts
+
+## What are types of Communities available ?
+## What licenses are available ?
+## What What is difference between login based license and named ?
 ##
 
-1. What types of communities are there ?
-1. What are the licenses available ?
-1. How do they login to the portal ?
+## References
+1. [Sharing Option for External Use Cases](https://www.learnexperiencecloud.com/article/Sharing-in-Communities-Uncovering-the-best-sharing-option-for-your-external-use-cases)
